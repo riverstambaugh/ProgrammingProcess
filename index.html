@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
+	<style>
+		.map {
+			height: 400px;
+			width: 100%;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+	<title>OpenLayers example</title>
+</head>
+<body>
+	<h2>My Map</h2>
+	<div id="map" class="map"></div>
+	<script type="text/javascript">
+        ol.proj.useGeographic();
+
+        const iconFeature1 = new ol.Feature({
+            geometry: new ol.geom.Point([-118.243683, 34.052235]),
+            name: 'Los Angeles',
+        });
+        
+
+        const iconStyle1 = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 10,
+                fill: new ol.style.Fill({ color: '#ff0000'})    
+            }),
+        });
+
+        iconFeature1.setStyle(iconStyle1);
+
+        const iconFeature2 = new ol.Feature({
+            geometry: new ol.geom.Point([-117.161087, 32.715736]),
+            name: 'San Diego',
+        });
+
+
+        const iconStyle2 = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 5,
+                fill: new ol.style.Fill({ color: '#0f6f00' })
+            }),
+        });
+
+        iconFeature2.setStyle(iconStyle2);
+
+        const iconFeature3 = new ol.Feature({
+            geometry: new ol.geom.Point([-118.131943, 34.156113]),
+            name: 'Pasadena',
+        });
+
+
+        const iconStyle3 = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 5,
+                fill: new ol.style.Fill({ color: '#0ffef7' })
+            }),
+        });
+
+        iconFeature3.setStyle(iconStyle3);
+
+        const iconFeature4 = new ol.Feature({
+            geometry: new ol.geom.Point([-122.313057, 37.554169]),
+            name: 'San Mateo',
+        });
+
+
+        const iconStyle4 = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 5,
+                fill: new ol.style.Fill({ color: '#9f9ef7' })
+            }),
+        });
+
+        iconFeature4.setStyle(iconStyle4);
+
+      
+
+        
+    const map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+            source: new ol.source.OSM() 
+          }),
+            new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    features: [iconFeature1, iconFeature2, iconFeature3, iconFeature4],
+                }),
+            }),
+        ],
+        view: new ol.View({
+          center: [-120.655, 35.3],
+          zoom: 7
+        })
+	  });
+		
+	</script>
+</body>
+</html>
